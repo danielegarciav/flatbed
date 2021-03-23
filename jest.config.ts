@@ -6,7 +6,7 @@ export default {
   // setupFilesAfterEnv: ['jest-extended'],
   testPathIgnorePatterns: ['node_mdoules', 'lib'],
   collectCoverage: true,
-  collectCoverageFrom: ['src/**/*.ts', '!src/**/*.d.ts', '!src/**/index.ts'],
+  collectCoverageFrom: ['src/**/*.ts', '!src/**/*.d.ts', '!src/**/index.ts', '!src/test/**/*.ts'],
   moduleNameMapper: {
     '~(.*)$': '<rootDir>/src/$1',
   },
