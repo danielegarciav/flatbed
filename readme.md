@@ -112,7 +112,7 @@ deserializing objects of custom classes, you must pass these constructors to `de
 This example is written in TypeScript for clarity, but works the same in plain JavaScript.
 
 ```ts
-import { serialize, deserialize } from 'flatbed';
+import { stringify, parse } from 'flatbed';
 
 class Player {
   x = 0;
