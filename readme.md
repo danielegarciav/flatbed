@@ -1,0 +1,3 @@
+# flatbed
+
+JavaScript object serializer

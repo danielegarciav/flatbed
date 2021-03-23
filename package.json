@@ -1,0 +1,58 @@
+{
+  "name": "flatbed",
+  "version": "0.1.0",
+  "description": "",
+  "keywords": [
+    "serialization",
+    "serializer",
+    "circular",
+    "json",
+    "classes",
+    "typescript"
+  ],
+  "author": "Daniel Garcia <danielegarciav@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://danielegarciav.github.io/flatbed/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/danielegarciav/flatbed.git"
+  },
+  "main": "lib/cjs/index.js",
+  "module": "lib/esm/index.js",
+  "types": "lib/cjs/index.d.ts",
+  "sideEffects": false,
+  "scripts": {
+    "clean": "rimraf -rf ./lib",
+    "build": "npm run clean && npm run compile:cjs && npm run compile:esm",
+    "build:cjs": "npm run clean && npm run compile:cjs",
+    "build:esm": "npm run clean && npm run compile:esm",
+    "compile:cjs": "tsc -P tsconfig.cjs.json",
+    "compile:esm": "tsc -P tsconfig.esm.json",
+    "prepublishOnly": "npm run build",
+    "preversion": "npm run test",
+    "version": "npm run build && git add -A src",
+    "postversion": "git push && git push --tags",
+    "lint": "eslint --ext .ts src/**",
+    "lint:fix": "eslint --ext .ts src/** --fix",
+    "test": "jest",
+    "docs": "npm run docs:readme && npm run docs:api",
+    "docs:readme": "doctoc --title \"**Table of contents**\" readme.md",
+    "docs:api": "typedoc src/index.ts",
+    "changelog": "standard-changelog"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.21",
+    "@typescript-eslint/eslint-plugin": "^4.19.0",
+    "@typescript-eslint/parser": "^4.19.0",
+    "doctoc": "^2.0.0",
+    "eslint": "^7.22.0",
+    "eslint-config-prettier": "^8.1.0",
+    "jest": "^26.6.3",
+    "rimraf": "^3.0.2",
+    "standard-changelog": "^2.0.27",
+    "ts-jest": "^26.5.4",
+    "ts-node": "^9.1.1",
+    "typedoc": "^0.20.33",
+    "typescript": "^4.2.3"
+  }
+}
