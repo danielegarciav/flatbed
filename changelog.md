@@ -1,3 +1,3 @@
-# unreleased
+# 0.1.0 (2021-03-23)
 
-This package has not been released on npm yet.
+Initial release.
