@@ -21,7 +21,6 @@ const builtinClasses: ClassMap<any> = new Map(Object.entries({ Map, Set, Object 
  * @param classes The classes/constructor functions to use when reconstructing serialized objects.
  * Can be either a map, an object, or an array.
  */
-
 export function deserialize<Root extends C, C = any>(root: RootSerializedObj, classes?: ClassArray<C>): Root;
 
 /**
@@ -32,7 +31,6 @@ export function deserialize<Root extends C, C = any>(root: RootSerializedObj, cl
  * @param classDict The classes/constructor functions to use when reconstructing serialized objects.
  * Can be either a map, an object, or an array.
  */
-
 export function deserialize<Root extends C, C = any>(root: RootSerializedObj, classDict?: ClassDict<C>): Root;
 
 /**
@@ -43,8 +41,20 @@ export function deserialize<Root extends C, C = any>(root: RootSerializedObj, cl
  * @param classMap The classes/constructor functions to use when reconstructing serialized objects.
  * Can be either a map, an object, or an array.
  */
-
 export function deserialize<Root extends C, C = any>(root: RootSerializedObj, classMap?: ClassMap<C>): Root;
+
+/**
+ * Deserializes a previously serialized object.
+ * @template Root The type of the object being returned.
+ * @template C The union of the types of all classes expected to be reconstructed.
+ * @param root The serialized object to deserialize.
+ * @param classMap The classes/constructor functions to use when reconstructing serialized objects.
+ * Can be either a map, an object, or an array.
+ */
+export function deserialize<Root extends C, C = any>(
+  root: RootSerializedObj,
+  c?: ClassMap<C> | ClassArray<C> | ClassDict<C>,
+): Root;
 
 // Implementation
 
@@ -145,4 +155,46 @@ function resolveRefs(x: AnyObj, objs: AnyObj[]): void {
       resolveRefs(val, objs);
     }
   }
+}
+
+/**
+ * Deserializes a previously stringified serialized object.
+ * @template Root The type of the object being returned.
+ * @template C The union of the types of all classes expected to be reconstructed.
+ * @param json The stringified serialized object to deserialize.
+ * @param classes The classes/constructor functions to use when reconstructing serialized objects.
+ * Can be either a map, an object, or an array.
+ */
+
+export function parse<Root extends C, C = any>(json: string, classes?: ClassArray<C>): Root;
+
+/**
+ * Deserializes a previously stringified serialized object.
+ * @template Root The type of the object being returned.
+ * @template C The union of the types of all classes expected to be reconstructed.
+ * @param json The stringified serialized object to deserialize.
+ * @param classDict The classes/constructor functions to use when reconstructing serialized objects.
+ * Can be either a map, an object, or an array.
+ */
+
+export function parse<Root extends C, C = any>(json: string, classDict?: ClassDict<C>): Root;
+
+/**
+ * Deserializes a previously stringified serialized object.
+ * @template Root The type of the object being returned.
+ * @template C The union of the types of all classes expected to be reconstructed.
+ * @param json The stringified serialized object to deserialize.
+ * @param classMap The classes/constructor functions to use when reconstructing serialized objects.
+ * Can be either a map, an object, or an array.
+ */
+
+export function parse<Root extends C, C = any>(json: string, classMap?: ClassMap<C>): Root;
+
+// Implementation
+
+export function parse<Root extends C, C = any>(
+  json: string,
+  c: ClassMap<C> | ClassArray<C> | ClassDict<C> = {},
+): Root {
+  return deserialize(JSON.parse(json), c);
 }

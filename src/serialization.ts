@@ -119,3 +119,12 @@ function resolveCircularDeps(obj: Record<string, SerialValue>, r: RefMap): void 
     }
   }
 }
+
+/**
+ * Serializes the given object into a a string representing a flat JSON structure that can be
+ * resurrected back to its original state with `flatbed.parse(x)` or `flatbed.deserialize(JSON.parse(x))`.
+ * @param obj The object to serialize.
+ */
+export function stringify(obj: AnyObj): string {
+  return JSON.stringify(serialize(obj));
+}
