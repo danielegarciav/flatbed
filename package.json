@@ -1,7 +1,7 @@
 {
   "name": "flatbed",
   "version": "0.1.0",
-  "description": "",
+  "description": "Advanced JavaScript object serializer - packs objects into a flat, JSON-friendly structure, keeping track of circular references and object constructors",
   "keywords": [
     "serialization",
     "serializer",
