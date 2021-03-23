@@ -77,7 +77,7 @@ export const newObjRepo = <T = AnyObj>(): ObjRepo<T> => {
     toArray: () => arr,
 
     dispose: () => {
-      arr.splice(arr.length);
+      arr.splice(0, arr.length);
       objs.clear();
     },
   };
